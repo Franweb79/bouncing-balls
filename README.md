@@ -1,11 +1,16 @@
-# BOUNCING BALLS by FRAN PRIETO
+# BOUNCING BALLS by <a href="https://www.linkedin.com/in/francisco-javier-prieto-gut/">FRAN PRIETO</a>
 
--This is a version addapted from this MDN tutorial https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_building_practice
 
--I made some changes, like using Classes instead of using a simple function 
+- I made this small project as an introduction to the JS possibilities to draw on a canvas. Is is the beginning to start learning basic concepts which will allow me digging on collisions, little games, 3d... and maybe one day Augmented or Virtual Reality. There are JS frameworks ready to do that like <a href="https://aframe.io/">A-frame</a>, based on <a href="https://threejs.org/">three.js</a>, the most popular Javascript library for using 3D graphics in a web browser. As you see, JavaScript if a world full of possibilities!
+
+- This is a version addapted from this MDN tutorial https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_building_practice
+
+- I made some changes, like using Classes instead of using a simple function 
 as a constructor for the ball object
--The same way, I created methods for tasks like draw() or update() instead of adding them as functions to the prototype of the object
--I also use my own way to "erase the ball" from the last position where the ball has been before current position. When a ball is updated, on the last occupied position by that ball, another ball with more size and the same color of background is drawn. More size for the "erasing-effect" ball is needed to avoid we see borders and other "fingerprints" or "halos" from our visible ball. Take in mind, if we don´t do something to restore last position to default color, we will have not balls, but a snake effect due to the balls being drawn one after another.
+- The same way, I created methods for tasks like draw() or update() instead of adding them as functions to the prototype of the object
+- I also use my own way to "erase the ball" from the last position where the ball has been before current position. When a ball is updated, on the last occupied position by that ball, another ball with more size and the same color of background is drawn. More size for the "erasing-effect" ball is needed to avoid we see borders and other "fingerprints" or "halos" from our visible ball. Take in mind, if we don´t do something to restore last position to default color, we will have not balls, but a snake effect due to the balls being drawn one after another.
+- Please check the generated JSDOC files from the "out" folder on the GitHub repository https://github.com/Franweb79/bouncing-balls
+- Don´t forget follow me on <a href="https://www.linkedin.com/in/francisco-javier-prieto-gut/">LinkedIn</a> and <a href="https://twitter.com/@FranDeveloper79">Twitter</a>
 
 
 
