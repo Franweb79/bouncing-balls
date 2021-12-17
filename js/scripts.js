@@ -1,7 +1,6 @@
 /** 
- * @author: Fran Prieto
+ * @author Fran Prieto <franprietogutweb@gmail.com>
  * 
- *
  */
 
 /** myCanvas is the canvas where we will draw. It will have 
@@ -14,6 +13,7 @@ const myCanvas = document.getElementById('myCanvas');
 /** ctx is the 2d context on the canvas */
 
 const ctx = myCanvas.getContext('2d');
+
 
 
 const width = myCanvas.width = window.innerWidth;
@@ -46,13 +46,6 @@ let randomColor=()=>{
 
 /**
  * instead of the example provided in tutorial, we will make with classes
- * 
- * PROPERTIES:
- * 
- * 
- * 
- * 
- *  METHODS:
  * 
  */
 
