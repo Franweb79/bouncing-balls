@@ -21,7 +21,7 @@ const height = myCanvas.height = window.innerHeight;
 
 /** function to generate random number */ 
 
-let random = (min, max)=> {
+let randomNumber = (min, max)=> {
     const num = Math.floor(Math.random() * (max - min + 1)) + min;
     return num;
 }
@@ -31,13 +31,13 @@ let random = (min, max)=> {
  * randomColor is not on tutorial
  * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_building_practice,
  * but I will create it. 
- * We will use inside the random method already created
+ * We will use inside the randomNumber method already created
 
 */
 
 let randomColor=()=>{
 
-    let color=`rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
+    let color=`rgb(${randomNumber(0,255)},${randomNumber(0,255)},${randomNumber(0,255)})`;
 
 
     return color;   
@@ -45,7 +45,8 @@ let randomColor=()=>{
 }
 
 /**
- * instead of the example provided in tutorial, we will make with classes
+ * instead of the example provided in tutorial, we will create ball object 
+ * from a Ball class
  * 
  */
 
@@ -70,14 +71,13 @@ class Ball{
     
     }
 
-    /** */
+    /** containg the logic to draw a circle, see steps on the code comments */
     draw(){
 
         //First, we use beginPath() to state that we want to draw a shape on the paper.
         //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
 
        
-        //console.log(ctx);
 
         ctx.beginPath();
 
@@ -86,54 +86,25 @@ class Ball{
 
         ctx.fillStyle = this.color;
 
-        console.log (ctx.fillStyle);
-
-        /*
-            Next, we use the arc() method to trace an arc shape on the paper. Its parameters are:
-            https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
-                - The x and y position of the arc's center — we are specifying the ball's x and y 
-                properties.
-                - The radius of the arc — in this case, the ball's size property.
-                //TODO entender esto del radio,
-                que es la mitad de la circ, y el size 
-                - The last two parameters specify the start and end number of degrees 
-                around the circle that the arc is drawn between. Here we specify 0 degrees, 
-                and 2 * PI, which is the equivalent of 360 degrees 
-                in radians (annoyingly, you have to specify this in radians). 
-                
-                That gives us a complete circle. If you had specified only 1 * PI, 
-                you'd get a semi-circle (180 degrees).
-                
+        
+        /** 
+            Check notes for developers on readme number 1          
         */
 
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
 
-        /*
-            - Last of all, we use the fill() method, which basically states 
-            "finish drawing the path we started with beginPath(), 
-            and fill the area it takes up with the color we specified earlier in fillStyle."
-            https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill
-
+        /** 
+            Check notes for developers on readme number 2
         */
 
         ctx.fill();
 
-        console.log ("dibujada");
+        
     }
 
-    /*
-        We can draw the ball in position, 
-        but to actually move the ball, we need an update function of some kind
-    */
-
-    deleteOldPosition(){
-        XPositionToDelete=this.x;
-        YPositionToDelete=this.y;
-
-    }  
 
     /** 
-     * The first four parts of the function check whether the ball has reached the edge 
+     * The first four parts of the update() method check whether the ball has reached the edge 
         of the canvas. If it has, we reverse the polarity of the relevant velocity 
         to make the ball travel in the opposite direction. 
             
@@ -213,33 +184,30 @@ class Ball{
 }
 
 
-//TODO comentar bien, con jsdoc, y explicar diferencias con el metodo del tutorial
+/**
+ * balls is an array of ball objects 
+ * 
+ * */
 
-//ANIMATING THE BALLs, we create them, draw them, and animate them
-
+//we create them, draw them, and animate (change position) them, later draw again
 let balls = [];
 
-
+/* we create 30 balls and push them to the array */
 while (balls.length <30){
 
-    let size = random(10,20);
-
+    let size = randomNumber(10,20);
+    /**
+     * ball is the object created from Ball class. Check README notes for developers number 3  
+     */
     let ball=new Ball(
-        // ball position always drawn at least one ball width
-        // away from the edge of the canvas, to avoid drawing errors,
-        //that is why we create the size local variable, we need to know it 
-        //to calculate
-
-        /*this would mean for example, is size (radius) is 10, a random
-        between 10 and 1490, assuming that canvas width is 1500)
-        */
-        random(0 + size,width - size),
-        /*same goes here for vertical*/
-        random(0 + size,height - size),
+        
+        randomNumber(0 + size,width - size),
+        /*same explained on notes for developers number 3 goes here for vertical*/
+        randomNumber(0 + size,height - size),
         /*velx and vely will also be random numbers, which
         will be added to x and y and will cause the animate-movement-effect*/
-        random (-7,7),
-        random (-7,7),
+        randomNumber(-7,7),
+        randomNumber(-7,7),
         randomColor(),
         size
 
@@ -252,6 +220,7 @@ while (balls.length <30){
 
 }
 
+/** method to draw all balls contained on the balls array */
 let drawAllBalls=()=>{
     
     for(let i=0;i<balls.length;++i){
@@ -259,6 +228,9 @@ let drawAllBalls=()=>{
     }
 }
 
+/** 
+ * will call update() for each ball of the array,that means, give new positions 
+*/
 let updateAllBalls=()=>{
 
     
@@ -276,6 +248,7 @@ let updateAllBalls=()=>{
 
 drawAllBalls();
 
+/** on a given interval, we update balls with updateAllBalls() and drawAllBalls() later */
 setInterval(() => {
 
     updateAllBalls();

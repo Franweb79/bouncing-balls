@@ -13,7 +13,7 @@ html, body {
     height: inherit;
   }
   
-  h1 {
+  h1{
     font-size: 2rem;
     letter-spacing: -1px;
     position: absolute;
@@ -24,5 +24,17 @@ html, body {
     color: wheat;
     text-shadow: 0 0 4px white;
   }
+
+  a{
+    font-size: 2rem;
+    letter-spacing: -1px;
+    margin: 0;
+    top: -4px;
+    right: 5px;
+    /*position absolute deleted for links, otherwise collpases*/
+    color: wheat;
+    text-shadow: 0 0 4px white;
+  }
+ 
 
   
